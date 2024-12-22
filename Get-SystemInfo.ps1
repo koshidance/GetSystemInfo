@@ -1,15 +1,15 @@
-# Получить информацию о процессоре
-Write-Host "Процессор:" -ForegroundColor Cyan
-Get-WmiObject Win32_Processor | ForEach-Object { Write-Host "Имя: $($_.Name)"; Write-Host "Частота: $($_.MaxClockSpeed) МГц"; Write-Host "Количество ядер: $($_.NumberOfCores)"; Write-Host "Количество логических процессоров: $($_.NumberOfLogicalProcessors)"; Write-Host "---" }
+# Get CPU information
+Write-Host "Processor:" -ForegroundColor Cyan
+Get-WmiObject Win32_Processor | ForEach-Object { Write-Host "Name: $($_.Name)"; Write-Host "Clock Speed: $($_.MaxClockSpeed) MHz"; Write-Host "Cores: $($_.NumberOfCores)"; Write-Host "Logical Processors: $($_.NumberOfLogicalProcessors)"; Write-Host "---" }
 
-# Получить информацию об оперативной памяти
-Write-Host "Оперативная память:" -ForegroundColor Cyan
-Get-WmiObject Win32_PhysicalMemory | ForEach-Object { Write-Host "Модуль: $($_.Manufacturer) $($_.PartNumber)"; Write-Host "Объем: $([math]::Round($_.Capacity / 1GB, 2)) ГБ"; Write-Host "Частота: $($_.Speed) МГц"; Write-Host "Тип памяти: $($_.MemoryType)"; Write-Host "---" }
+# Get RAM information
+Write-Host "Memory:" -ForegroundColor Cyan
+Get-WmiObject Win32_PhysicalMemory | ForEach-Object { Write-Host "Module: $($_.Manufacturer) $($_.PartNumber)"; Write-Host "Capacity: $([math]::Round($_.Capacity / 1GB, 2)) GB"; Write-Host "Speed: $($_.Speed) MHz"; Write-Host "Memory Type: $($_.MemoryType)"; Write-Host "---" }
 
-# Получить информацию о видеокарте
-Write-Host "Видеокарта:" -ForegroundColor Cyan
-Get-WmiObject Win32_VideoController | ForEach-Object { Write-Host "Имя: $($_.Name)"; Write-Host "Память: $([math]::Round($_.AdapterRAM / 1MB, 2)) МБ"; Write-Host "Разрешение: $($_.VideoModeDescription)"; Write-Host "---" }
+# Get GPU information
+Write-Host "GPU:" -ForegroundColor Cyan
+Get-WmiObject Win32_VideoController | ForEach-Object { Write-Host "Name: $($_.Name)"; Write-Host "Memory: $([math]::Round($_.AdapterRAM / 1MB, 2)) MB"; Write-Host "Resolution: $($_.VideoModeDescription)"; Write-Host "---" }
 
-# Общая информация о системе
-Write-Host "Системная информация:" -ForegroundColor Cyan
-Get-ComputerInfo | Select-Object CsName, WindowsVersion, WindowsBuildLabEx, OsArchitecture, BiosVersion | ForEach-Object { Write-Host "Имя компьютера: $($_.CsName)"; Write-Host "Версия Windows: $($_.WindowsVersion)"; Write-Host "Сборка Windows: $($_.WindowsBuildLabEx)"; Write-Host "Архитектура ОС: $($_.OsArchitecture)"; Write-Host "Версия BIOS: $($_.BiosVersion)"; Write-Host "---" }
+# Get system information
+Write-Host "System Information:" -ForegroundColor Cyan
+Get-ComputerInfo | Select-Object CsName, WindowsVersion, WindowsBuildLabEx, OsArchitecture, BiosVersion | ForEach-Object { Write-Host "Computer Name: $($_.CsName)"; Write-Host "Windows Version: $($_.WindowsVersion)"; Write-Host "Windows Build: $($_.WindowsBuildLabEx)"; Write-Host "OS Architecture: $($_.OsArchitecture)"; Write-Host "BIOS Version: $($_.BiosVersion)"; Write-Host "---" }
